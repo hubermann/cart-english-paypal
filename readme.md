@@ -1,54 +1,58 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
 
-## Laravel con acceso basado en roles
+##Rutas y controlador
+las rutas se crean en /routes/web.php
 
-Usa el sistema propio de laravel auth:
+al final de todo estan las rutas del frontend
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Route::get('/checkout', 'HomeController@checkout')->name('frontend.checkout');
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+[Route::get] ---> Nueva ruta y su metodo. puede ser get o post
 
-## Learning Laravel
+['/checkout'] --> El prfijo de la url
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+['HomeController@checkout']  ---> El controlador que se encarga de atender la peticion.
+[->name('frontend.checkout')]  --> El nombre amigable que se le puede darle para luego usar en vistas o funciones como url('frontend.checkout')
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
+#Configurar el archivo .env  
+(hay un env.example que podes usar de guia y luego se renombra a .env)
 
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
+para la base de datos es algo asi:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=8889
+DB_DATABASE=nombre-de-tu-bd
+DB_USERNAME=root
+DB_PASSWORD=112358
 
-## Contributing
+##Generar Key
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+php artisan key:generate
+Sino vas a recibir un msg tipo: No application encryption key has been specified.
 
-## Security Vulnerabilities
+##Generar la base de datos:
+php artisan migrate
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+##Seed
+Para crear un usar admin y roles de user para el backend y front:
 
-## License
+php artisan db:seed
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
-# cart-english-paypal
+##Correr servidor local
+Luego con php artisan serve ya se podria probar en localhost:8000
+
+
+
+[Gabriel Hubermann | Hubermann.com | hubermann@gmail.com](hubermann.com).
+
+
+
+
+
+
+
+
+
+
