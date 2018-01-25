@@ -12,7 +12,7 @@
         <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
       </li>
       <li class="list-inline-item g-mr-5">
-        <a class="u-link-v5 g-color-text" href="{{ URL::to('/products') }}">Productos</a>
+        <a class="u-link-v5 g-color-text" href="{{ URL::to('/products') }}">Products</a>
         <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
       </li>
       <li class="list-inline-item g-color-primary">
@@ -33,7 +33,7 @@
           <div class="col-md-9 order-md-2">
             <div class="g-pl-15--lg">
 
-<?php  
+<?php
               // <!-- Filters -->
               // <div class="d-flex justify-content-end align-items-center g-brd-bottom g-brd-gray-light-v4 g-pt-40 g-pb-20">
               //   <!-- Show -->
@@ -94,21 +94,21 @@
               // </div>
               // <!-- End Filters -->
 ?>
-              
 
-     
+
+
               @unless($products->count())
-                  
+
 
               <div class="text-center">
               <br>
-              <h2 class="g-mb-30">No hay productos</h2>
-              <p>Esta categoria no tiene productos aún.</p>
+              <h2 class="g-mb-30">No products</h2>
+              <p>This category is empty.</p>
               </div>
 
 
               @else
-                @foreach($products as $product)         
+                @foreach($products as $product)
               <!-- Products -->
               <div class="g-brd-bottom g-brd-gray-light-v4">
                 <div class="row g-pt-30">
@@ -175,9 +175,9 @@
 <div class="row" id="custom-pagination">
   {{ $products->links() }}
 </div>
-<!-- End custom_pagination -->          
+<!-- End custom_pagination -->
 
-             
+
             </div>
           </div>
           <!-- End Content -->
@@ -194,7 +194,7 @@
                       <li>No items.</li>
                   @else
                     @foreach($categories as $category)
-                        
+
                         <li class="my-3">
                           <a class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="{{ route('frontend.by_category', ['id' => $category->id]) }}">{{ $category->name }}
                             <span class="float-right g-font-size-12">{{ $category->products_by_category->count() }}</span></a>
@@ -288,8 +288,8 @@
               </div> -->
               <!-- End Brand -->
 
-            
-             
+
+
 
 
             </div>
@@ -299,4 +299,3 @@
       </div>
       <!-- End Products -->
 @endsection
-      

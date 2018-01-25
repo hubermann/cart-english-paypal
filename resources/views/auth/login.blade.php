@@ -7,7 +7,7 @@
   <div class="col-md-6 col-lg-5 order-lg-2 g-mb-80">
     <div class="g-brd-around g-brd-gray-light-v3 g-bg-white rounded g-px-30 g-py-50 mb-4">
       <header class="text-center mb-4">
-        <h1 class="h4 g-color-black g-font-weight-400">Acceda a su cuenta</h1>
+        <h1 class="h4 g-color-black g-font-weight-400">Login to Your Account</h1>
       </header>
 
       <!-- Form -->
@@ -18,8 +18,8 @@
             <span class="input-group-addon g-width-45 g-brd-gray-light-v3 g-color-gray-dark-v5">
               <i class="icon-finance-067 u-line-icon-pro"></i>
             </span>
-            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15" name="email" type="email" placeholder="Email Adress">
-                
+            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15" name="email" type="email" placeholder="Email Address">
+
           </div>
             <p class="form-error">
                 @if ($errors->has('email'))
@@ -36,7 +36,7 @@
               <i class="icon-media-094 u-line-icon-pro"></i>
             </span>
             <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15" name="password" type="password" placeholder="Password">
-                
+
           </div>
             <p class="form-error">
                 @if ($errors->has('password'))
@@ -58,12 +58,12 @@
             </label> -->
           </div>
           <div class="col align-self-center text-right">
-            <a class="g-font-size-13" href="{{ route('password.request') }}">Olvido su contraseña?</a>
+            <a class="g-font-size-13" href="{{ route('password.request') }}">Forgot password?</a>
           </div>
         </div>
 
         <div class="mb-5">
-          <button class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="submit">Ingresar</button>
+          <button class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="submit">Login</button>
         </div>
 
         <div class="d-flex justify-content-center text-center g-mb-30">
@@ -73,16 +73,16 @@
         </div>
 
         <div class="text-center">
-          <p class="g-color-gray-dark-v5 mb-0">No tiene cuenta?
-            <a class="g-font-weight-600" href="{{ route('register') }}">Crear mi cuenta</a></p>
+          <p class="g-color-gray-dark-v5 mb-0">Don't have an account??
+            <a class="g-font-weight-600" href="{{ route('register') }}">Signup</a></p>
         </div>
 
-        
+
       </form>
       <!-- End Form -->
     </div>
 
-    
+
   </div>
 
   <div class="col-md-6 order-lg-1 g-mb-80">

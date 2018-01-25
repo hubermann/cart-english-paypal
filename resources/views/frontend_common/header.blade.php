@@ -100,12 +100,12 @@
                   @else
                   <li>
                     <a class="d-block g-color-black g-color-primary--hover g-text-underline--none--hover g-font-weight-400 g-py-5 g-px-20" href="{{ route('login') }}">
-                      Access
+                      Login
                     </a>
                   </li>
                   <li>
                     <a class="d-block g-color-black g-color-primary--hover g-text-underline--none--hover g-font-weight-400 g-py-5 g-px-20" href="{{ route('register') }}">
-                      Create account
+                      Signup
                     </a>
                   </li>
                 @endif
@@ -280,11 +280,11 @@
         <div id="navBar" class="collapse navbar-collapse align-items-center flex-sm-row g-pt-15 g-pt-0--lg">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item g-ml-10--lg">
-              <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="/">Inicio</a>
+              <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="/">Home</a>
             </li>
 
             <li class="nav-item g-ml-10--lg">
-              <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="{{ route('frontend.products') }}">Productos</a>
+              <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="{{ route('frontend.products') }}">Products</a>
             </li>
             <!-- End Home - Submenu -->
 
@@ -304,10 +304,10 @@
 
 
             <li class="nav-item g-ml-10--lg">
-              <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="{{ route('frontend.outstandings')}}">Destacados</a>
+              <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="{{ route('frontend.outstandings')}}">Outstandings</a>
             </li>
             <li class="nav-item g-ml-10--lg">
-              <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="{{ route('frontend.contact')}}">Contacto</a>
+              <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="{{ route('frontend.contact')}}">Contact</a>
             </li>
           </ul>
 

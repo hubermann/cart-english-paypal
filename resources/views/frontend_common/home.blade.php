@@ -16,7 +16,7 @@
     @endforeach
   </ol>
   <div class="carousel-inner">
-    
+
   @foreach( $sliders as $key => $slider )
       <div class="carousel-item {{ $key == 0 ? ' active' : '' }}" >
           <img class="d-block w-100" src="{{'/images-sliders/'.$slider->filename }}" alt="{{ $slider->title }}">
@@ -59,13 +59,13 @@
 
 <div class="container g-pt-100 g-pb-70">
   <div class="text-center mx-auto g-max-width-600 g-mb-50">
-    <h2 class="g-color-black mb-4">Destacados</h2>
+    <h2 class="g-color-black mb-4">Outstandings</h2>
     <!-- <p class="lead">Keep in touch with the latest blogs &amp; news.</p> -->
   </div>
 
   <div class="row g-mx-minus-10">
-  
-    
+
+
     @foreach($outstandings as $outstanding)
       <div class="col-sm-6 col-md-4 g-px-10 g-mb-30">
       <!-- Blog Background Overlay Blocks -->
@@ -89,7 +89,7 @@
               -
               <a class="g-color-white-opacity-0_7 text-uppercase" href="{{ route('frontend.by_subcategory', ['id' => $outstanding->subcategory_id]) }}">{{$outstanding->get_subcategory_name($outstanding->subcategory_id) }}</a>
 
-              
+
             </h4>
             <div class="mb-4"></span>
           </div>
@@ -118,7 +118,7 @@
   </div>
 
   <div class="row g-mx-minus-10 g-mb-50">
-    
+
 
 
     <style>
@@ -135,7 +135,7 @@
       <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
         <!-- Article Image -->
         <div class="g-max-width-100 g-mr-15">
-          
+
 
         @if ( count($product->images))
             <img class="d-flex w-100" src="{{'/images-products/'.$product->images[0]->filename }}" alt="Image Description">
@@ -171,7 +171,7 @@
                   </button>
                 </form>
               </li>
-              
+
             </ul>
           </footer>
           <!-- End Article Footer -->
@@ -181,9 +181,9 @@
     </div>
 
   @endforeach
-  
+
 @endif
-  
+
   </div>
 
   <div class="text-center">
@@ -194,4 +194,3 @@
 
 
 @endsection
-

@@ -3,13 +3,13 @@
 
 <div class="container g-pt-100 g-pb-70">
   <div class="text-center mx-auto g-max-width-600 g-mb-50">
-    <h2 class="g-color-black mb-4">Destacados</h2>
+    <h2 class="g-color-black mb-4">Outstandings</h2>
     <!-- <p class="lead">Keep in touch with the latest blogs &amp; news.</p> -->
   </div>
 
   <div class="row g-mx-minus-10">
-  
-    
+
+
     @foreach($outstandings as $outstanding)
       <div class="col-sm-6 col-md-4 g-px-10 g-mb-30">
       <!-- Blog Background Overlay Blocks -->
@@ -32,7 +32,7 @@
               <a class="g-color-white-opacity-0_7 text-uppercase" href="#">{{ $outstanding->get_category_name($outstanding->category_id) }}</a>
               -
               <a class="g-color-white-opacity-0_7 text-uppercase" href="#">{{$outstanding->get_subcategory_name($outstanding->subcategory_id) }}</a>
-              
+
             </h4>
             <div class="mb-4"></span>
           </div>

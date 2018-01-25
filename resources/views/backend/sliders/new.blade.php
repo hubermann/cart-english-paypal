@@ -9,8 +9,8 @@
 		<div class="white-box">
 			<h3 class="box-name">Categorias</h3>
 
-	
-			
+
+
 
 				<form action="{{ route('backend.sliders.create') }}" method="post" method="post" enctype="multipart/form-data">
 				{{ csrf_field() }}
@@ -46,11 +46,21 @@
           @endif
 				</div>
 
+				<div class="form-group">
+					<label for="name">Title button</label>
+					<input type="text" name="title_button" class="form-control" value="{{ old('title_button') }}">
+					@if ($errors->has('title_button'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('title_button') }}</strong>
+              </span>
+          @endif
+				</div>
+
 
 				<div class="form-group">
 					<label for="title">Seleccione una imagen:</label>
 						<input type="file" name="input_img" id="input_img">
-				
+
 				</div>
 
 
@@ -69,6 +79,3 @@
 <!-- /.row -->
 
 @endsection
-
-
-

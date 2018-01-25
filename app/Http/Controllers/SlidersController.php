@@ -36,7 +36,7 @@ class SlidersController extends Controller
 				$title = (Input::get('title') != "" ) ? Input::get('title') : "";
 				$text = (Input::get('text') != "" ) ? Input::get('text') : "";
         $link = (Input::get('link') != "" ) ? Input::get('link') : "";
-        $title_button = (Input::get('title_button') != "" ) ? Input::get('title_button') : "#";
+        $title_button = (Input::get('title_button') != "" ) ? Input::get('title_button') :"#";
         $slider = new Slider();
         $slider->title = $title;
         $slider->text = $text;
@@ -53,13 +53,13 @@ class SlidersController extends Controller
   public function destroy($id)
   {
     $slider = Slider::findOrfail($id);
-  
-    
+
+
     if(!empty($slider->filename)){
 
       @unlink('images-sliders/'.$slider->filename);
     }
-    //Elimino 
+    //Elimino
     $slider->delete();
     return Redirect::to('/backend/sliders')->with('success', 'Slider deleted.');
 

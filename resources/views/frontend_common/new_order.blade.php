@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container ">
-  
+
 
   <div class="g-max-width-645 text-center mx-auto ">
     <h4 class="h1 mb-3">Checkout</h4>
@@ -38,7 +38,7 @@
               </span>
           @endif
           </div>
-          
+
           </div>
           <div class="row">
           <div class="col-md-12">
@@ -52,7 +52,7 @@
               </span>
           @endif
           </div>
-  
+
           <div class="col-md-8 form-group g-mb-20">
             <input name="telephone" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="Telephone">
           @if ($errors->has('telephone'))
@@ -102,7 +102,7 @@
           @endif
           </div>
 
-        
+
         </div>
 
         <div class="text-center">
