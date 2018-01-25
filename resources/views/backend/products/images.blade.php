@@ -24,13 +24,7 @@
 				<div class="form-group">
 					<label for="title">Seleccione una imagen para asociar al producto:</label>
 						<input type="file" name="input_img" id="input_img">
-					
 				
-					@if ($errors->has('title'))
-              <span class="help-block">
-                  <strong>{{ $errors->first('category') }}</strong>
-              </span>
-          @endif
 				</div>
 
 

@@ -2,6 +2,56 @@
 
 @section('content')
 
+<style>
+.carousel-caption{ bottom: 180px;}
+.carousel-caption h3{font-size: 4em;}
+</style>
+
+@if($sliders->count())
+<!-- carousel -->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    @foreach( $sliders as $key => $slider )
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="{{ $key == 0 ? ' active' : '' }}"></li>
+    @endforeach
+  </ol>
+  <div class="carousel-inner">
+    
+  @foreach( $sliders as $key => $slider )
+      <div class="carousel-item {{ $key == 0 ? ' active' : '' }}" >
+          <img class="d-block w-100" src="{{'/images-sliders/'.$slider->filename }}" alt="{{ $slider->title }}">
+
+      <div class="carousel-caption">
+          @if ($slider->title)
+            <h3> {{$slider->title}}</h3>
+          @endif
+          @if ($slider->text)
+            <h5> {{$slider->text}}</h5>
+          @endif
+
+          @if ($slider->link)
+            <a href="{{$slider->link}}" class="btn btn-primary" >{{$slider->title_button}}</a>
+          @endif
+      </div>
+
+
+
+
+      </div>
+  @endforeach
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<!-- end carousel  -->
+@endif
+
 
 <!--   PRODUCTOS DESTACADOS  -->
 

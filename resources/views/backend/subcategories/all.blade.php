@@ -5,6 +5,8 @@
 
 <style>
 	.border{border:1px solid #e2e2e2; border-radius: .3em; padding: .3em .8em; margin-bottom: 2px; float: left; width: 100%}
+	.row-subcategoria{padding: .5em; margin: .3em 0; border: 1px solid #f2f2f2; display: block; float: left; width: 100%;}
+	.subcategorie-title{color: #444; padding-left: .9em;}
 </style>
 <!--row -->
 <div class="row">
@@ -30,7 +32,7 @@
 								    <div class="card-header border" role="tab" id="heading{{$category->id}}">
 								      <h4>
 								        <a data-toggle="collapse" href="#collapse{{$category->id}}" aria-expanded="true" aria-controls="collapse{{$category->id}}">
-								          {{ $category->name }}
+								          {{ $category->name }}  @if($category->outstanding == 1) <span class="small"><i class="fa fa-thumb-tack" aria-hidden="true"></i></span> @endif
 								        </a>
 								      </h4>
 								    </div>
@@ -40,17 +42,21 @@
 
 												<div class="subcategoria">
 								        	@unless($category->subcategories->count())
-						    						<p>No items.</p>
+								        		<div class="row-subcategoria">
+						    							<h5 class="subcategorie-title">No items.</h5>
+						    						</div>
 													@else
 									        @foreach($category->subcategories as $subcategory )
 														
-														<div class="col-md-9">
-															<p>{{ $subcategory->name }}</p>
-														</div>
-														<div class="col-md-3">
-															<div class="btn-group pull-right">
-															<a class="btn btn-small" href="{{ route('backend.subcategories.edit', ['id' => $subcategory->id])}}"><i class="fa fa-edit"></i></a>
-															<a href="{{ route('backend.subcategories.destroy', ['id' => $subcategory->id])}}" class="delete btn btn-small" data-confirm="Confirma eliminar ésta Subcategoria? - Todos sus productos dependientes tambien serán eliminados de manera definitiva."><i class="fa fa-trash-o"></i></a>	
+														<div class="row-subcategoria">
+															<div class="col-md-9">
+																<h5 class="subcategorie-title"> <i class="fa fa-chevron-right" aria-hidden="true"></i> {{ $subcategory->name }}</h5>
+															</div>
+															<div class="col-md-3">
+																<div class="btn-group pull-right">
+																<a class="btn btn-small" href="{{ route('backend.subcategories.edit', ['id' => $subcategory->id])}}"><i class="fa fa-edit"></i></a>
+																<a href="{{ route('backend.subcategories.destroy', ['id' => $subcategory->id])}}" class="delete btn btn-small" data-confirm="Confirma eliminar ésta Subcategoria? - Todos sus productos dependientes tambien serán eliminados de manera definitiva."><i class="fa fa-trash-o"></i></a>	
+																</div>
 															</div>
 														</div>
 		

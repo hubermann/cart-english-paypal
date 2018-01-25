@@ -8,24 +8,24 @@
           <h2 class="h5 g-color-gray-light-v3 mb-4">Products</h2>
 
           <div class="row">
-            
+
 
            @if( count( App\Http\Controllers\HomeController::get_categories() ))
             @foreach( App\Http\Controllers\HomeController::get_categories()->chunk(3) as $categories)
             <div class="col-4 g-mb-20">
               <ul class="list-unstyled g-font-size-13 mb-0">
                 @foreach($categories as $category)
-                    
+
                         <li class="g-my-10">
                           <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">{{ $category->name }}</a>
                         </li>
-                    
+
                 @endforeach
                 </ul>
             </div>
             @endforeach
           @endif
-        
+
           </div>
         </div>
 
@@ -98,7 +98,7 @@
         </div>
       </div>
 
-      
+
     </div>
   </div>
   <!-- End Content -->
@@ -107,7 +107,7 @@
   <div class="container g-pt-30 g-pb-10">
     <div class="row justify-content-between align-items-center">
       <div class="col-md-6 g-mb-20">
-        <p class="g-font-size-13 mb-0">2017 © Htmlstream. All Rights Reserved.</p>
+        <p class="g-font-size-13 mb-0">2017 © <a href="http://www.hubermann.com">Hubermann.com</a>. All Rights Reserved.</p>
       </div>
 
       <div class="col-md-6 text-md-right g-mb-20">

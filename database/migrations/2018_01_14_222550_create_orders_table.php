@@ -19,13 +19,14 @@ class CreateOrdersTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('email');
-            
+
             $table->string('area_code');
             $table->string('telephone');
 
             $table->string('street_name');
             $table->string('street_number');
             $table->string('city');
+            $table->string('state');
             $table->string('zip_code');
 
             $table->text('order_description');

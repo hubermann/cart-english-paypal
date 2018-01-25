@@ -103,15 +103,19 @@
 					</li>
 					
 					<li>
-						<a href="{{ route('backend.categories') }}" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i><span class="hide-menu">Categorias</span></a>
+						<a href="{{ route('backend.categories') }}" class="waves-effect"><i class="fa fa-circle-o fa-fw" aria-hidden="true"></i><span class="hide-menu">Categorias</span></a>
 					</li>
 
 					<li>
-						<a href="{{ route('backend.subcategories') }}" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i><span class="hide-menu">Subcategorias</span></a>
+						<a href="{{ route('backend.subcategories') }}" class="waves-effect"><i class="fa fa-circle-thin fa-fw" aria-hidden="true"></i><span class="hide-menu">Subcategorias</span></a>
 					</li>
 
 					<li>
-						<a href="{{ route('backend.products') }}" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i><span class="hide-menu">Productos</span></a>
+						<a href="{{ route('backend.products') }}" class="waves-effect"><i class="fa fa-dropbox fa-fw" aria-hidden="true"></i><span class="hide-menu">Productos</span></a>
+					</li>
+
+					<li>
+						<a href="{{ route('backend.sliders') }}" class="waves-effect"><i class="fa fa-camera fa-fw" aria-hidden="true"></i><span class="hide-menu">Sliders</span></a>
 					</li>
 					
 				</ul>

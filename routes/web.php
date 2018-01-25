@@ -35,6 +35,13 @@ Route::group(['prefix' => 'backend'], function(){
 	'middleware' 	=> 'roles',
 	'roles'				=>['Superadmin']
 	]);
+
+	Route::get('/users/detail/{id}', [
+	'uses' 				=> 'UsersController@user_detail',
+	'as' 					=> 'backend.users.detail',
+	'middleware' 	=> 'roles',
+	'roles'				=>['Superadmin']
+	]);
 	Route::post('/users/update', [
 	'uses' 				=> 'UsersController@updateUsers',
 	'as' 					=> 'backend.users.update',
@@ -60,6 +67,71 @@ Route::group(['prefix' => 'backend'], function(){
 	'middleware' 	=> 'roles',
 	'roles'				=>['Superadmin']
 	]);
+
+
+	//orders
+	Route::get('/orders', [
+	'uses' 				=> 'OrdersController@index',
+	'as' 					=> 'backend.orders',
+	'middleware' 	=> 'roles',
+	'roles'				=>['Superadmin']
+	]);
+
+	Route::get('/orders_pending', [
+	'uses' 				=> 'OrdersController@pending',
+	'as' 					=> 'backend.orders_pending',
+	'middleware' 	=> 'roles',
+	'roles'				=>['Superadmin']
+	]);
+
+	Route::get('/orders_declined', [
+	'uses' 				=> 'OrdersController@declined',
+	'as' 					=> 'backend.orders_declined',
+	'middleware' 	=> 'roles',
+	'roles'				=>['Superadmin']
+	]);
+
+	Route::get('/orders_successfully', [
+	'uses' 				=> 'OrdersController@successfully',
+	'as' 					=> 'backend.orders_successfully',
+	'middleware' 	=> 'roles',
+	'roles'				=>['Superadmin']
+	]);
+
+	Route::get('/orders/destroy/{id}', [
+	'uses' 				=> 'OrdersController@destroy',
+	'as' 					=> 'backend.orders.destroy',
+	'middleware' 	=> 'roles',
+	'roles'				=>['Superadmin']
+	]);
+
+	//Sliders
+	Route::get('/sliders', [
+	'uses' 				=> 'SlidersController@index',
+	'as' 					=> 'backend.sliders',
+	'middleware' 	=> 'roles',
+	'roles'				=>['Superadmin']
+	]);
+	Route::get('/sliders/new', [
+	'uses' 				=> 'SlidersController@newSlider',
+	'as' 					=> 'backend.sliders.new',
+	'middleware' 	=> 'roles',
+	'roles'				=>['Superadmin']
+	]);
+	Route::post('/sliders', [
+	'uses' 				=> 'SlidersController@create',
+	'as' 					=> 'backend.sliders.create',
+	'middleware' 	=> 'roles',
+	'roles'				=>['Superadmin']
+	]);
+	Route::get('/sliders/destroy/{id}', [
+	'uses' 				=> 'SlidersController@destroy',
+	'as' 					=> 'backend.sliders.destroy',
+	'middleware' 	=> 'roles',
+	'roles'				=>['Superadmin']
+	]);
+
+
 	//Categories
 	Route::get('/categories', [
 	'uses' 				=> 'CategoriesController@index',
@@ -213,6 +285,7 @@ Route::group(['prefix' => 'backend'], function(){
 #Route::get('/', function () { return view('home'); });
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/help', 'HomeController@help')->name('frontend.help');
 
 Route::get('/products', 'HomeController@products_list')->name('frontend.products');
 Route::get('/product/{id}', 'HomeController@product_detail')->name('frontend.product_detail');
@@ -221,13 +294,13 @@ Route::get('/outstandings', 'HomeController@outstandings')->name('frontend.outst
 Route::get('/subcategory/{id}', 'HomeController@by_subcategory')->name('frontend.by_subcategory');
 Route::get('/cart', 'HomeController@cart')->name('frontend.cart');
 Route::get('/contact', 'HomeController@contact')->name('frontend.contact');
+Route::post('/process_contact', 'HomeController@process_contact')->name('frontend.process_contact');
 Route::post('/cart', 'HomeController@cart');
+
+Route::get('/user_orders', 'HomeController@user_orders')->name('frontend.user_orders');
+
 Route::get('/checkout', 'HomeController@checkout')->name('frontend.checkout');
-
 Route::post('/new_order', 'HomeController@process_new_order')->name('frontend.new_order');
-
-Route::get('/payment_success/{operationid}', 'HomeController@payment_success')->name('payment_success');
-
-Route::get('/payment_error/{operationid}', 'HomeController@payment_error')->name('payment_error');
-
-
+Route::get('/retry_payment/{id}', 'HomeController@retry_process_order')->name('frontend.retry_process_order');
+Route::get('/todo_pago/payment_success', 'HomeController@todo_pago_payment_success')->name('todo_pago_payment_success');
+Route::get('/todo_pago/payment_error', 'HomeController@todo_pago_payment_error')->name('todo_pago_payment_error');

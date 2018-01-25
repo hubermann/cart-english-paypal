@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/hs-megamenu/src/hs.megamenu.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/slick-carousel/slick/slick.css') }}">
 
+    <script src="{{ asset('template/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.parallax.min.js') }}"></script>
+
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css') }}">
 
     <!-- CSS Unify Theme -->
@@ -48,7 +50,7 @@
   		@include('frontend_common.header')
 
       <div class="container">
-        <section id="notifications" style="margin:1.6em;">
+        <section id="notifications">
           <div class="col-md-12">
               @if(Session::has('error'))
                 <div class="alert alert-danger">
@@ -110,8 +112,7 @@
     <script src="{{ asset('template/assets/vendor/dzsparallaxer/advancedscroller/plugin.js') }}"></script>
     <script src="{{ asset('template/assets/vendor/hs-megamenu/src/hs.megamenu.js') }}"></script>
     <script src="{{ asset('template/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-
-    <!-- JS Unify -->
+   <!-- JS Unify -->
     <script src="{{ asset('template/assets/js/hs.core.js') }}"></script>
     <script src="{{ asset('template/assets/js/components/hs.header.js') }}"></script>
     <script src="{{ asset('template/assets/js/helpers/hs.hamburgers.js') }}"></script>
@@ -158,5 +159,8 @@
         $.HSCore.components.HSSlider.init('#rangeSlider1');
       });
     </script>
+
+   
+
   </body>
 </html>

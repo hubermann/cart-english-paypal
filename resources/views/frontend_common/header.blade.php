@@ -53,11 +53,11 @@
 
             <!-- <li class="list-inline-item g-mx-4">
               <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" href="page-our-stores-1.html">Our Stores</a>
-            </li> 
+            </li>
             <li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li> -->
 
             <li class="list-inline-item g-mx-4">
-              <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" href="page-help-1.html">Ayuda</a>
+              <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" href="{{ route('frontend.help')}}">Help</a>
             </li>
 
             <li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li>
@@ -74,38 +74,38 @@
                  data-dropdown-hide-on-scroll="false"
                  data-dropdown-animation-in="fadeIn"
                  data-dropdown-animation-out="fadeOut">
-                Mi cuenta
-      
+                My account
+
               </a>
               <ul id="account-dropdown-2" class="list-unstyled u-shadow-v29 g-pos-abs g-bg-white g-width-160 g-pb-5 g-mt-19 g-z-index-2"
                   aria-labelledby="account-dropdown-invoker-2">
                 @if( Auth::user() )
                   <li>
-                   
+
                       <a class="d-block g-color-black g-color-primary--hover g-text-underline--none--hover g-font-weight-400 g-py-5 g-px-20" href="{{ route('logout') }}"
                           onclick="event.preventDefault();
                                    document.getElementById('logout-form').submit();">
-                          Salir
+                          log out
                       </a>
-                  
+
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                           {{ csrf_field() }}
                       </form>
                   </li>
                   <li>
                       @if (Auth::user()->hasRole('Superadmin'))
-                          <a class="d-block g-color-black g-color-primary--hover g-text-underline--none--hover g-font-weight-400 g-py-5 g-px-20" href="{{ route('backend.root') }}">Administrador</a>
+                          <a class="d-block g-color-black g-color-primary--hover g-text-underline--none--hover g-font-weight-400 g-py-5 g-px-20" href="{{ route('backend.root') }}">Administrator</a>
                       @endif
                   </li>
                   @else
                   <li>
                     <a class="d-block g-color-black g-color-primary--hover g-text-underline--none--hover g-font-weight-400 g-py-5 g-px-20" href="{{ route('login') }}">
-                      Ingresar
+                      Access
                     </a>
                   </li>
                   <li>
                     <a class="d-block g-color-black g-color-primary--hover g-text-underline--none--hover g-font-weight-400 g-py-5 g-px-20" href="{{ route('register') }}">
-                      Crear cuenta
+                      Create account
                     </a>
                   </li>
                 @endif
@@ -145,7 +145,7 @@
               <div class="js-scrollbar g-height-200">
 
 
-                
+
                   <?php foreach(Cart::content() as $row) :?>
 
                   <!-- Product -->
@@ -159,7 +159,7 @@
                             @else
                               <img class="img-fluid" src="{{ URL::to('/') }}/images/no-image-available.jpg" alt="{{$row->title}}">
                             @endif
-                          
+
                         </a>
                       </div>
 
@@ -176,8 +176,8 @@
 
                   <?php endforeach;?>
 
-                  
-                
+
+
               </div>
 
               <div class="clearfix g-px-15">
@@ -202,7 +202,7 @@
               </div>
               <?php }else{ ?>
                 <div class="text-center g-mb-15">
-                  <h6> <br>No hay productos aún en su orden.</h6>
+                  <h6> <br>No items in your order.</h6>
                   <a class="btn btn-block u-btn-black g-brd-primary--hover g-bg-primary--hover g-font-size-12 text-uppercase rounded g-py-10" href="{{url('products')}}">Comenzar a comprar</a>
                 </div>
               <?php } ?>
@@ -271,7 +271,7 @@
 
         <!-- Logo -->
         <a class="navbar-brand" href="/">
-          
+
         <img src="{{ URL::to('/') }}/images/logo.png" alt="logo">
         </a>
         <!-- End Logo -->
@@ -288,7 +288,7 @@
             </li>
             <!-- End Home - Submenu -->
 
-            
+
 
             @if( count( App\Http\Controllers\HomeController::get_categories_outstandings() ))
 
@@ -298,9 +298,9 @@
               </li>
               @endforeach
             @endif
-           
 
-         
+
+
 
 
             <li class="nav-item g-ml-10--lg">
@@ -318,5 +318,3 @@
   </div>
 </header>
 <!-- End Header -->
-
-

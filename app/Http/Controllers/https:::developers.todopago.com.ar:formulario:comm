@@ -1,0 +1,12 @@
+https://developers.todopago.com.ar/formulario/commands?fr=1&command=formulario&m=t08996068-6385-ebd8-6119-607402fcdc67
+
+http://192.168.2.125/laravel-roles/public/todo_pago/payment_success/?operationid=15&Answer=85750da2-8953-1140-8c25-9a2ceb215263
+
+//Feedback ok
+
+http://localhost:8000/todo_pago/payment_success/?operationid=15&Answer=75407c03-9f10-2717-4d6e-b63a5d6ef6c4
+
+
+!!!! IR A PROGRAMAR A STARBUCKS !!!!
+
+
