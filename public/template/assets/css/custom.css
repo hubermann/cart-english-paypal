@@ -8,3 +8,7 @@
 border-radius: 5px;}
 #custom-pagination li.active{color: #fff; background: #3bb18f;}
 #custom-pagination li.disabled{color: #ccc;}
+
+.alert-warning{margin: .8em 0}
+.alert-success{margin: .8em 0}
+.alert-danger{margin: .8em 0}

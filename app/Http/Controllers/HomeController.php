@@ -187,17 +187,18 @@ class HomeController extends Controller
            array(
                'name' => Input::get('name'),
                'email' => Input::get('email'),
+               'subject' => Input::get('subject'),
+               'telephone' => Input::get('telephone'),
                'message' => Input::get('message')
            ), function($message)
            {
-               $message->from('hubermann@gmail.com');
+               $message->from('info@hubercart.tk');
                $message->to('hubermann@gmail.com', 'Admin')->subject('Website Feedback');
            });
 
         return redirect('/contact')->with('success', 'Gracias por su mensaje');
 
     }
-
 
     public static function get_product_images($id)
     {
@@ -393,6 +394,14 @@ class HomeController extends Controller
           $order = Order::find($id_order);
           $order->feedback_mp = $feedback_key;
           $order->payment_success();
+
+            //update stock
+            foreach (Cart::content() as $item) {
+                $product = Product::findOrfail($item->id);
+                $product->qty = $product->qty - $item->qty;
+                $product->save();
+            }
+
           Cart::destroy();
           return view('frontend_common.checkout_result', ['status' => 1,'order_id' => $id_order]);
         } else

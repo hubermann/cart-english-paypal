@@ -2760,8 +2760,8 @@ body[class*="u-body--header-side"].u-body--header-side-opened .u-header__overlay
 }
 
 .u-btn-primary:hover, .u-btn-primary.active {
-  border-color: #58c7a7;
-  background-color: #58c7a7;
+  border-color: #444;
+  background-color: #000;
 }
 
 .u-btn-primary:hover, .u-btn-primary:focus, .u-btn-primary.active {
