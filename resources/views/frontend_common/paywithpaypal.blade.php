@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.frontend')
 
 @section('content')
 <div class="container">
@@ -12,7 +12,6 @@
                 </div>
                 <?php Session::forget('success');?>
                 @endif
-
                 @if ($message = Session::get('error'))
                 <div class="custom-alerts alert alert-danger fade in">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
@@ -24,13 +23,10 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" id="payment-form" role="form" action="{!! URL::route('addmoney.paypal') !!}" >
                         {{ csrf_field() }}
-
                         <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
                             <label for="amount" class="col-md-4 control-label">Amount</label>
-
                             <div class="col-md-6">
                                 <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" autofocus>
-
                                 @if ($errors->has('amount'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('amount') }}</strong>

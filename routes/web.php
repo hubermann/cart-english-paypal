@@ -303,12 +303,7 @@ Route::get('/checkout', 'HomeController@checkout')->name('frontend.checkout');
 Route::post('/new_order', 'HomeController@process_new_order')->name('frontend.new_order');
 Route::get('/retry_payment/{id}', 'HomeController@retry_process_order')->name('frontend.retry_process_order');
 
-Route::get('/todo_pago/payment_success', 'HomeController@todo_pago_payment_success')->name('todo_pago_payment_success');
-Route::get('/todo_pago/payment_error', 'HomeController@todo_pago_payment_error')->name('todo_pago_payment_error');
-
-// route for view/blade file
-Route::get('paywithpaypal', array('as' => 'paywithpaypal','uses' => 'PaypalController@payWithPaypal',));
-// route for post request
-Route::post('paypal', array('as' => 'paypal','uses' => 'PaypalController@postPaymentWithpaypal',));
-// route for check status responce
-Route::get('paypal', array('as' => 'status','uses' => 'PaypalController@getPaymentStatus',));
+Route::post('/payment_success', 'HomeController@payment_success')->name('payment_success');
+Route::post('/payment_error', 'HomeController@payment_error')->name('payment_error');
+// Route::get('/payment_success', 'HomeController@payment_success')->name('payment_success');
+// Route::get('/payment_error', 'HomeController@payment_error')->name('payment_error');

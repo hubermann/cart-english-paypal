@@ -221,7 +221,32 @@ class HomeController extends Controller
         if( Cart::total() == 0.00 ){ return redirect('/')->with('warning', 'No hay productos en su orden.');}
 
 
-        return view('frontend_common.new_order')->with('states',TodoPagoWrap::get_all_state_code());
+        //si todo esta ok, creo ordern + muestro pantalla de orden mas btn paypal
+        $items = [];
+        foreach(Cart::content() as $row)
+        {
+            array_push($items, ["id" => $row->id, "title" => $row->name, "quantity" => $row->qty, "currency_id" => "ARS", "unit_price" => $row->price ]);
+        }
+
+        $order                      = New Order();
+        $order->name                = Auth::user()->name || '--';
+        $order->surname             = Auth::user()->surname || '--';
+        $order->area_code           = Auth::user()->area_code || '--';
+        $order->telephone           = Auth::user()->telephone || '--';
+        $order->street_name         = Auth::user()->street_name || '--';
+        $order->street_number       = Auth::user()->street_number || '--';
+        $order->city                = Auth::user()->city || '--';
+        $order->state               = Auth::user()->state || '--';
+        $order->zip_code            = Auth::user()->zip_code || '--';
+        $order->user_id             = Auth::user()->id;
+        $order->email               = Auth::user()->email;
+        $order->order_description   = serialize($items);
+        $order->payment_status      = Order::PENDING;
+        $order->amount              = Cart::total();
+
+        $order->save();
+
+        return view('frontend_common.order_created', ['order_id'=>$order->id, 'order_amount' => Cart::total()]);
     }
 
 
@@ -267,6 +292,7 @@ class HomeController extends Controller
             $order->amount              = Cart::total();
 
             $order->save();
+            Cart::destroy();
 
 
 
@@ -380,49 +406,78 @@ class HomeController extends Controller
 
 
 
-    public function todo_pago_payment_success(Request $request)
+    public function payment_success(Request $request)
     {
 
         $params   = $request::all();
-        $id_order = strip_tags($params['operationid']);
+        // $id_order = strip_tags($params['operationid']);
+        //
+        // $TP             = new TodoPagoWrap;
+        // $feedback_key= strip_tags($params['Answer']);
+        // $TP->answer_key = $feedback_key;
+        // if ($TP->payment_success()) //comprobamos el estado del pago
+        // { // aca tenemos que hacer el procesamiento correspondiente a una orden pagada
+        //   $order = Order::find($id_order);
+        //   $order->feedback_mp = $feedback_key;
+        //   $order->payment_success();
+        //
+        //     //update stock
+        //     foreach (Cart::content() as $item) {
+        //         $product = Product::findOrfail($item->id);
+        //         $product->qty = $product->qty - $item->qty;
+        //         $product->save();
+        //     }
 
-        $TP             = new TodoPagoWrap;
-        $feedback_key= strip_tags($params['Answer']);
-        $TP->answer_key = $feedback_key;
-        if ($TP->payment_success()) //comprobamos el estado del pago
-        { // aca tenemos que hacer el procesamiento correspondiente a una orden pagada
-          $order = Order::find($id_order);
-          $order->feedback_mp = $feedback_key;
-          $order->payment_success();
 
-            //update stock
-            foreach (Cart::content() as $item) {
-                $product = Product::findOrfail($item->id);
-                $product->qty = $product->qty - $item->qty;
-                $product->save();
-            }
+//         SUCCESS
+// transaction_subject=
+// txn_type=web_accept
+// payment_date=09%3A15%3A01+Nov+29%2C+2013+PST
+// last_name=OpenAlfa
+// residence_country=ES
+// pending_reason=multi_currency
+// item_name=Professional+Subscription
+// payment_gross=
+// mc_currency=EUR
+// business=openalfa-facilitator%40openalfa.com
+// payment_type=instant
+// protection_eligibility=Ineligible
+// payer_status=verified
+// tax=0.00
+// payer_email=comprador%40openalfa.com
+// txn_id=1XA11350TU8279492
+// quantity=1
+// receiver_email=openalfa-facilitator%40openalfa.com
+// first_name=Compradorconvisa
+// payer_id=SBWU6QRGHTUY2
+// receiver_id=DQ56QJ7NG9FFS
+// item_number=
+// handling_amount=0.00
+// payment_status=Pending
+// shipping=0.00
+// mc_gross=10.00
+// custom=
+// charset=windows-1252
 
-          Cart::destroy();
-          return view('frontend_common.checkout_result', ['status' => 1,'order_id' => $id_order]);
-        } else
-        { // si llegamos aca es por que no se pudo comprobar el pago
-          return redirect('/todo_pago/payment_error?operationid='.$id_order);
-        }
+
+        echo "Payment Success desde paypal :";
     }
 
-    public function todo_pago_payment_error(Request $request)
+    public function payment_error(Request $request)
     {
         $params   = $request::all();
-        $id_order = strip_tags($params['operationid']);
-
-        $order = Order::find($id_order)->payment_rejected();
-        return view('frontend_common.checkout_result', ['status' => 2, 'order_id' => $id_order]);
+        // $id_order = strip_tags($params['operationid']);
+        //
+        // $order = Order::find($id_order)->payment_rejected();
+        // return view('frontend_common.checkout_result', ['status' => 2, 'order_id' => $id_order]);
+        echo "Payment error desde paypal";
+        var_dump($params);
     }
 
 
     public function user_orders()
     {
-        if( !Auth::user() ){ return redirect('login')->with('warning', 'Por favor identifiquese con su usuario y contraseña.');}
+        if( !Auth::user() ){ return redirect('login')->with('warning', 'Please login.');}
         $data['categories'] = Category::all();
         $data['orders'] = Order::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
 
