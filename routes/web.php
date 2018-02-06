@@ -305,5 +305,7 @@ Route::get('/retry_payment/{id}', 'HomeController@retry_process_order')->name('f
 
 Route::post('/payment_success', 'HomeController@payment_success')->name('payment_success');
 Route::post('/payment_error', 'HomeController@payment_error')->name('payment_error');
+
+Route::get('/paypalIpn', 'HomeController@paypalIpn')->name('paypalIpn');
 // Route::get('/payment_success', 'HomeController@payment_success')->name('payment_success');
 // Route::get('/payment_error', 'HomeController@payment_error')->name('payment_error');

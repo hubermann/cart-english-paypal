@@ -1,0 +1,19 @@
+
+
+tengo el cart y apreto checkout
+
+la puedo guardar con el mail id de user y nombre.
+
+
+
+
+
+si tengo session
+    [muestro order creada]
+    [Creo order] + [pantalla detalle y btn paypal]
+
+mando login ->
+
+ [Creo order] +[pantalla detalle y btn paypal]
+
+El update de los productos debe ser al recibir el payment_ok y desde el array de la orden por que le carro no existe mas 

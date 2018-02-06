@@ -16,6 +16,7 @@ use Auth;
 use MP;
 use Mail;
 use App\TodoPagoWrap;
+use Fahim\PaypalIPN\PaypalIPNListener;
 
 class HomeController extends Controller
 {
@@ -215,6 +216,30 @@ class HomeController extends Controller
         return Category::All();
     }
 
+    public function paypalIpn()
+    {
+    $ipn = new PaypalIPNListener();
+    $ipn->use_sandbox = true;
+
+    $verified = $ipn->processIpn();
+
+    $report = $ipn->getTextReport();
+
+    Log::info("-----new payment-----");
+
+    Log::info($report);
+
+    if ($verified) {
+        if ($_POST['address_status'] == 'confirmed') {
+            // Check outh POST variable and insert your logic here
+            Log::info("payment verified and inserted to db");
+        }
+    } else {
+        Log::info("Some thing went wrong in the payment !");
+    }
+}
+
+
     public function checkout()
     {
         if( !Auth::user() ){ return redirect('login')->with('warning', 'Por favor identifiquese.');}
@@ -345,6 +370,8 @@ class HomeController extends Controller
           return view('frontend_common.checkout_result')->with('message','Por favor intente nuevamente luego.');
         }
     }
+
+
 
     //retry payment
     public function retry_process_order($id)
