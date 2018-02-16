@@ -125,7 +125,7 @@ class HomeController extends Controller
             $product_id = Request::get('product_id');
             $product = Product::find($product_id);
             Cart::add(array('id' => $product_id, 'name' => $product->title, 'qty' => 1, 'price' => $product->price));
-            return \App::make('redirect')->back()->with('success', 'Producto agregado al carrito.');
+            return \App::make('redirect')->back()->with('success', 'Product added to cart.');
         }
 
         //increment the quantity
@@ -243,7 +243,7 @@ class HomeController extends Controller
     public function checkout()
     {
         if( !Auth::user() ){ return redirect('login')->with('warning', 'Por favor identifiquese.');}
-        if( Cart::total() == 0.00 ){ return redirect('/')->with('warning', 'No hay productos en su orden.');}
+        if( Cart::total() == 0.00 ){ return redirect('/')->with('warning', 'Empty order.');}
 
 
         //si todo esta ok, creo ordern + muestro pantalla de orden mas btn paypal

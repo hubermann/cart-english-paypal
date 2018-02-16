@@ -198,7 +198,7 @@
 
   <div class="col-md-6 order-lg-1 g-mb-80">
     <div class="mb-5">
-      <h2 class="h1 g-font-weight-400 mb-3">Welcome to Unify</h2>
+      <h2 class="h1 g-font-weight-400 mb-3">Welcome to CocInnovation</h2>
       <p class="g-color-gray-dark-v4">The time has come to bring those ideas and plans to life. This is where we really begin to visualize your napkin sketches and make them into beautiful pixels.</p>
     </div>
 

@@ -59,9 +59,10 @@
 
 <div class="container g-pt-100 g-pb-70">
   <div class="text-center mx-auto g-max-width-600 g-mb-50">
-    <h2 class="g-color-black mb-4">Outstandings</h2>
-    <!-- <p class="lead">Keep in touch with the latest blogs &amp; news.</p> -->
+    <h2 class="g-color-black mb-4">New Arrivals</h2>
+    <p class="lead">We want to create a range of beautiful, practical and modern outerwear that doesn't cost the earth – but let's you still live life in style.</p>
   </div>
+
 
   <div class="row g-mx-minus-10">
 
@@ -112,10 +113,6 @@
 <!--  PRODUCTOS BOXES  -->
 
 <section class="container g-py-100">
-  <div class="text-center mx-auto g-max-width-600 g-mb-50">
-    <h2 class="g-color-black mb-4">New Arrivals</h2>
-    <p class="lead">We want to create a range of beautiful, practical and modern outerwear that doesn't cost the earth – but let's you still live life in style.</p>
-  </div>
 
   <div class="row g-mx-minus-10 g-mb-50">
 

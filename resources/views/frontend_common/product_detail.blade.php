@@ -3,7 +3,7 @@
 @section('content')
 
 <section>
-  
+
 
 <!-- Breadcrumbs -->
 <section class="g-brd-bottom g-brd-gray-light-v4 g-py-30">
@@ -28,10 +28,10 @@
       <!-- Product Description -->
       <div class="container g-py-50">
         <div class="row">
-          
+
 
           <div class="col-lg-7 ">
-          
+
 
 
           @if($product->images->count())
@@ -43,7 +43,7 @@
                 @endforeach
               </ol>
               <div class="carousel-inner">
-                
+
               @foreach( $product->images as $key => $image )
                   <div class="carousel-item {{ $key == 0 ? ' active' : '' }}" >
                       <img class="d-block w-100" src="{{'/images-products/'.$image->filename }}" alt="{{ $product->title }}">
@@ -61,17 +61,17 @@
             </div>
             <!-- end carousel  -->
             @else
-              
+
               <div class="col-md-12">
                 <img class="w-100" src="{{ URL::to('/') }}/images/no-image-available.jpg" alt="{{ $product->title }}">
               </div>
 
             @endif
-          
+
           </div>
 
           <div class="col-lg-5">
-            <div class="g-px-40--lg g-pt-70">
+            <div class="g-px-40--lg ">
               <!-- Product Info -->
               <div class="g-mb-30">
                 <h1 class="g-font-weight-300 mb-4">{{ $product->title }}</h1>
@@ -97,12 +97,12 @@
               @endforeach
 
               <!-- Accordion -->
-              
+
 
               <!-- Buttons -->
               <div class="row g-mx-minus-5 g-mb-20">
                 <div class="col g-px-5 g-mb-10">
-                 
+
                   <form method="POST" action="{{url('cart')}}">
                     <input type="hidden" name="product_id" value="{{$product->id}}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -113,7 +113,7 @@
 
                 </div>
                 <div class="col g-px-5 g-mb-10">
-                 
+
                 </div>
               </div>
               <!-- End Buttons -->
@@ -122,7 +122,7 @@
           </div>
         </div>
       </div>
-      <!-- End Product Description -->   
+      <!-- End Product Description -->
 
 </section>
 

@@ -183,7 +183,7 @@
 
           <!-- Filters -->
           <div class="col-md-3 order-md-1 g-brd-right--lg g-brd-gray-light-v4 g-pt-40">
-            <div class="g-pr-15--lg g-pt-60">
+            <div class="g-pr-15--lg">
               <!-- Categories -->
               <div class="g-mb-30">
                 <h3 class="h5 mb-3">Categories</h3>
