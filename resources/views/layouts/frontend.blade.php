@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <!-- Title -->
-    <title> Protecno </title>
+    <title> CocInnovation.com </title>
 
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
@@ -160,7 +160,7 @@
       });
     </script>
 
-   
+
 
   </body>
 </html>
