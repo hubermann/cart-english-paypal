@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/hs-megamenu/src/hs.megamenu.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/slick-carousel/slick/slick.css') }}">
 
+    <script src="{{ asset('template/assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('template/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.parallax.min.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css') }}">

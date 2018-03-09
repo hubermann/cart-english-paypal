@@ -20,7 +20,7 @@
 	<link href="{{ asset('pixeladmin-lite/html/css/animate.css') }}" rel="stylesheet">
 	<link href="{{ asset('pixeladmin-lite/html/css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('pixeladmin-lite/html/css/colors/megna-dark.css') }}" rel="stylesheet">
-	
+
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -62,8 +62,8 @@
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
 					              {{ Auth::user()->name }} <span class="caret"></span>
 					          </a>
-					         
-					          
+
+
 					            <ul class="dropdown-menu text-center">
 					                <li>
 					                    <a href="{{ route('logout') }}"
@@ -77,13 +77,13 @@
 					                    </form>
 					                </li>
 					            </ul>
-					          
+
 					      </li>
 					    </ul>
 					</div>
 					@endguest
 
-					
+
 				</ul>
 			</div>
 			<!-- /.navbar-header -->
@@ -101,7 +101,11 @@
 					<li>
 						<a href="{{ route('backend.users.view') }}" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i><span class="hide-menu">Users</span></a>
 					</li>
-					
+
+					<li>
+						<a href="{{ route('backend.orders') }}" class="waves-effect"><i class="fa fa-money fa-fw" aria-hidden="true"></i><span class="hide-menu">Orders</span></a>
+					</li>
+
 					<li>
 						<a href="{{ route('backend.categories') }}" class="waves-effect"><i class="fa fa-circle-o fa-fw" aria-hidden="true"></i><span class="hide-menu">Categorias</span></a>
 					</li>
@@ -117,7 +121,7 @@
 					<li>
 						<a href="{{ route('backend.sliders') }}" class="waves-effect"><i class="fa fa-camera fa-fw" aria-hidden="true"></i><span class="hide-menu">Sliders</span></a>
 					</li>
-					
+
 				</ul>
 				<div class="center p-20">
 
@@ -131,7 +135,7 @@
 				<div class="row">
 					<br>
 				</div>
-			
+
 				<!-- row-->
 				<div class="row">
 
@@ -185,16 +189,16 @@
 
 	<!-- jQuery -->
 	<script src="{{ asset('pixeladmin-lite/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
-	
+
 	<!-- Bootstrap Core JavaScript -->
 	<script src="{{ asset('pixeladmin-lite/html/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-	
+
 	<!-- Menu Plugin JavaScript -->
 	<script src="{{ asset('pixeladmin-lite/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') }}"></script>
 
 	<!--slimscroll JavaScript -->
 	<script src="{{ asset('pixeladmin-lite/html/js/jquery.slimscroll.js') }}"></script>
-	
+
 	<!--Wave Effects -->
 	<script src="{{ asset('pixeladmin-lite/html/js/waves.js') }}"></script>
 
@@ -247,8 +251,8 @@ $(document).ready(function(){
     var addButton = $('.add_button'); //Add button selector
     var wrapper = $('.field_wrapper'); //Input field wrapper
     var x = 1; //Initial field counter is 1
-    var fieldHTML = '<tr><td class="td"><input type="text" class="form-control" name="prod_propiedad[]" value="" placeholder="Propiedad" /></td><td class="td"><input type="text" class="form-control" name="prod_valor[]" value="" placeholder="Valor"/></td></tr>'; //New input field html 
-    
+    var fieldHTML = '<tr><td class="td"><input type="text" class="form-control" name="prod_propiedad[]" value="" placeholder="Propiedad" /></td><td class="td"><input type="text" class="form-control" name="prod_valor[]" value="" placeholder="Valor"/></td></tr>'; //New input field html
+
     $(addButton).click(function(){ //Once add button is clicked
         if(x < maxField){ //Check maximum number of input fields
             x++; //Increment field counter

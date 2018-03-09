@@ -8,14 +8,16 @@
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
         "gloudemans/shoppingcart": "^2.4",
+        "guzzlehttp/guzzle": "~5.2",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "guzzlehttp/guzzle": "~5.2"
+        "square/connect": "^2.5"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
+        "nikolag/square": "^1.1",
         "phpunit/phpunit": "~6.0"
     },
     "autoload": {

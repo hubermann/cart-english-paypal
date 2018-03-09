@@ -105,6 +105,20 @@ Route::group(['prefix' => 'backend'], function(){
 	'roles'				=>['Superadmin']
 	]);
 
+	Route::get('/orders/edit/{id}', [
+	'uses' 				=> 'OrdersController@edit',
+	'as' 					=> 'backend.orders.edit',
+	'middleware' 	=> 'roles',
+	'roles'				=>['Superadmin']
+	]);
+	Route::post('/orders/update', [
+	'uses' 				=> 'OrdersController@update',
+	'as' 					=> 'backend.orders.update',
+	'middleware' 	=> 'roles',
+	'roles'				=>['Superadmin']
+	]);
+
+
 	//Sliders
 	Route::get('/sliders', [
 	'uses' 				=> 'SlidersController@index',
@@ -301,11 +315,15 @@ Route::get('/user_orders', 'HomeController@user_orders')->name('frontend.user_or
 
 Route::get('/checkout', 'HomeController@checkout')->name('frontend.checkout');
 Route::post('/new_order', 'HomeController@process_new_order')->name('frontend.new_order');
+Route::get('/payment/{id}', 'HomeController@payment')->name('frontend.payment');
+
+Route::post('/process_payment', 'HomeController@process_payment')->name('frontend.process_payment');
+
 Route::get('/retry_payment/{id}', 'HomeController@retry_process_order')->name('frontend.retry_process_order');
 
 Route::post('/payment_success', 'HomeController@payment_success')->name('payment_success');
 Route::post('/payment_error', 'HomeController@payment_error')->name('payment_error');
 
-Route::get('/paypalIpn', 'HomeController@paypalIpn')->name('paypalIpn');
+
 // Route::get('/payment_success', 'HomeController@payment_success')->name('payment_success');
 // Route::get('/payment_error', 'HomeController@payment_error')->name('payment_error');

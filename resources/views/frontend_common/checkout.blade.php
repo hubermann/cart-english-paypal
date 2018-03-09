@@ -6,7 +6,7 @@
 
 
   <div class="g-max-width-645 text-center mx-auto ">
-    <h4 class="h1 mb-3">Checkout</h4>
+    <h4 class="h1 mb-3">Checkout </h4>
     <p class="g-font-size-17 mb-0">Fill up the form and hit the "Proceed with payment process".</p>
     <br>
   </div>
@@ -21,7 +21,7 @@
             <h6>Basic information</h6>
           </div>
           <div class="col-md-6 form-group g-mb-20">
-            <input name="name" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="text" placeholder="Name">
+            <input name="name" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="text" placeholder="Name" value="{{ old('name') }}">
           @if ($errors->has('name'))
               <span class="help-block">
                   <strong>{{ $errors->first('name') }}</strong>
@@ -31,10 +31,10 @@
 
 
           <div class="col-md-6 form-group g-mb-20">
-            <input name="surname" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="text" placeholder="Surname">
-          @if ($errors->has('surname'))
+            <input name="lastname" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="text" placeholder="lastname" value="{{ old('lastname') }}">
+          @if ($errors->has('lastname'))
               <span class="help-block">
-                  <strong>{{ $errors->first('surname') }}</strong>
+                  <strong>{{ $errors->first('lastname') }}</strong>
               </span>
           @endif
           </div>
@@ -45,7 +45,7 @@
             <h6>Telephone</h6>
           </div>
           <div class="col-md-4 form-group g-mb-20">
-            <input name="area_code" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="Area code">
+            <input name="area_code" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="Area code" value="{{ old('area_code') }}">
           @if ($errors->has('area_code'))
               <span class="help-block">
                   <strong>{{ $errors->first('area_code') }}</strong>
@@ -54,7 +54,7 @@
           </div>
 
           <div class="col-md-8 form-group g-mb-20">
-            <input name="telephone" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="Telephone">
+            <input name="telephone" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="Telephone" value="{{ old('telephone') }}">
           @if ($errors->has('telephone'))
               <span class="help-block">
                   <strong>{{ $errors->first('telephone') }}</strong>
@@ -67,7 +67,7 @@
             <h6>Address</h6>
           </div>
           <div class="col-md-8 form-group g-mb-20">
-            <input name="street_name" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="Street">
+            <input name="street_name" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="Street" value="{{ old('street_name') }}">
           @if ($errors->has('street_name'))
               <span class="help-block">
                   <strong>{{ $errors->first('street_name') }}</strong>
@@ -76,7 +76,7 @@
           </div>
 
           <div class="col-md-4 form-group g-mb-20">
-            <input name="street_number" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="Street number">
+            <input name="street_number" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="Street number" value="{{ old('street_number') }}">
           @if ($errors->has('street_number'))
               <span class="help-block">
                   <strong>{{ $errors->first('street_number') }}</strong>
@@ -85,7 +85,7 @@
           </div>
 
           <div class="col-md-8 form-group g-mb-20">
-            <input name="city" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="City">
+            <input name="city" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="City" value="{{ old('city') }}">
           @if ($errors->has('city'))
               <span class="help-block">
                   <strong>{{ $errors->first('city') }}</strong>
@@ -94,10 +94,10 @@
           </div>
 
           <div class="col-md-4 form-group g-mb-20">
-            <input name="zip_code" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="Zip Code">
-          @if ($errors->has('zip_code'))
+            <input name="state" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="tel" placeholder="State" value="{{ old('state') }}">
+          @if ($errors->has('state'))
               <span class="help-block">
-                  <strong>{{ $errors->first('zip_code') }}</strong>
+                  <strong>{{ $errors->first('state') }}</strong>
               </span>
           @endif
           </div>
@@ -113,7 +113,6 @@
   </div>
 
 
-<br>
 <br>
 <br>
 

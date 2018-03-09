@@ -37,8 +37,8 @@
 						<thead>
 
 								<th class="text-left">ID</th>
-								<th class="text-left">Email comprador</th>
-								<th class="text-left"> Nombre y apellido</th>
+								<th class="text-left"> Buyer</th>
+								<th class="text-left"> Amount</th>
 								<th class="text-left"> Status</th>
 								<th class="text-right"> Opciones</th>
 
@@ -46,9 +46,10 @@
 							<tbody>
 								@foreach($orders as $order)
 									<tr>
-										<td>{{ $order->id }}</td>
-										<td>{{ $order->email }}</td>
-										<td>{{ $order->name}}{{ $order->surname}}</td>
+										<td><strong>{{ $order->id }}</strong> <br> <span style="font-size: 80%;">({{ $order->created_at }})</span></td>
+
+										<td>{{ $order->email }} <br> {{ $order->name}} {{ $order->surname}}</td>
+										<td>{{ $order->amount }}</td>
 										<td>
 											@if ( $order->payment_status == 0)
 												Pending
@@ -60,7 +61,7 @@
 										</td>
 										<td>
 											<div class="btn-group pull-right">
-
+												<a class="btn btn-small" href="{{ route('backend.orders.edit', ['id' => $order->id])}}"><i class="fa fa-edit"></i></a>
 											<a href="{{ route('backend.orders.destroy', ['id' => $order->id])}}" class="delete btn btn-small" data-confirm="Confirma eliminar ésta order de manera definitiva."><i class="fa fa-trash-o"></i></a>
 											</div>
 										</td>

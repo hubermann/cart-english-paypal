@@ -180,7 +180,6 @@ class HomeController extends Controller
             return redirect('/contact')->withErrors($validator)->withInput();
         }
 
-
         #ContactUS::create($request->all());
 
         Mail::send('email',
@@ -215,84 +214,37 @@ class HomeController extends Controller
         return Category::All();
     }
 
-    public function paypalIpn()
-    {
-    $ipn = new PaypalIPNListener();
-    $ipn->use_sandbox = true;
-
-    $verified = $ipn->processIpn();
-
-    $report = $ipn->getTextReport();
-
-    Log::info("-----new payment-----");
-
-    Log::info($report);
-
-    if ($verified) {
-        if ($_POST['address_status'] == 'confirmed') {
-            // Check outh POST variable and insert your logic here
-            Log::info("payment verified and inserted to db");
-        }
-    } else {
-        Log::info("Some thing went wrong in the payment !");
-    }
-}
-
-
     public function checkout()
     {
         if( !Auth::user() ){ return redirect('login')->with('warning', 'Por favor identifiquese.');}
         if( Cart::total() == 0.00 ){ return redirect('/')->with('warning', 'No hay productos en su orden.');}
 
-
-        //si todo esta ok, creo ordern + muestro pantalla de orden mas btn paypal
-        $items = [];
-        foreach(Cart::content() as $row)
-        {
-            array_push($items, ["id" => $row->id, "title" => $row->name, "quantity" => $row->qty, "currency_id" => "ARS", "unit_price" => $row->price ]);
-        }
-
-        $order                      = New Order();
-        $order->name                = Auth::user()->name || '--';
-        $order->surname             = Auth::user()->surname || '--';
-        $order->area_code           = Auth::user()->area_code || '--';
-        $order->telephone           = Auth::user()->telephone || '--';
-        $order->street_name         = Auth::user()->street_name || '--';
-        $order->street_number       = Auth::user()->street_number || '--';
-        $order->city                = Auth::user()->city || '--';
-        $order->state               = Auth::user()->state || '--';
-        $order->zip_code            = Auth::user()->zip_code || '--';
-        $order->user_id             = Auth::user()->id;
-        $order->email               = Auth::user()->email;
-        $order->order_description   = serialize($items);
-        $order->payment_status      = Order::PENDING;
-        $order->amount              = Cart::total();
-
-        $order->save();
-
-        return view('frontend_common.order_created', ['order_id'=>$order->id, 'order_amount' => Cart::total()]);
+        return view('frontend_common.checkout');
     }
+
 
 
     public function process_new_order()
     {
         $rules = [
             'name' => 'required|max:80',
-            'surname' => 'required|max:80',
+            'lastname' => 'required|max:80',
             'area_code' => 'required|max:50',
             'telephone' => 'required|max:20',
             'street_name' => 'required|max:20',
             'street_number' => 'required|max:20',
             'city' => 'required|max:20',
-            'zip_code' => 'required|max:20',
+            'state' => 'required|max:20',
         ];
 
-    $validator = Validator::make(Input::all(), $rules);
+      $validator = Validator::make(Input::all(), $rules);
 
-    if ($validator->fails())
-    {
-        return redirect('/checkout')->withErrors($validator)->withInput();
-    }
+      if ($validator->fails())
+      {
+          return redirect('/checkout')->withErrors($validator)->withInput();
+
+      }
+
             $items = [];
             foreach(Cart::content() as $row)
             {
@@ -301,14 +253,15 @@ class HomeController extends Controller
 
             $order                      = New Order();
             $order->name                = Input::get('name');
-            $order->surname             = Input::get('surname');
+            $order->surname             = Input::get('lastname');
             $order->area_code           = Input::get('area_code');
             $order->telephone           = Input::get('telephone');
             $order->street_name         = Input::get('street_name');
             $order->street_number       = Input::get('street_number');
             $order->city                = Input::get('city');
+            $order->zip_code            = '--';
+            $order->idempotency_key     = '--';
             $order->state               = Input::get('state');
-            $order->zip_code            = Input::get('zip_code');
             $order->user_id             = Auth::user()->id;
             $order->email               = Auth::user()->email;
             $order->order_description   = serialize($items);
@@ -318,117 +271,92 @@ class HomeController extends Controller
             $order->save();
             Cart::destroy();
 
+            // https://docs.connect.squareup.com/articles/using-sandbox?q=test%20card
 
-
-        //Aca hay qeu integrar TODOPAGO
-
-        //enviar el id de orden y luego actuualizarla dependiendo del resultado.
-
-        //El user debe poder ver sus ordenes y si es el estado es sin-pagar debe tener la posibilidad de pagar
-        $request = Request::instance();
-
-        $TP = new TodoPagoWrap;
-
-        $TP->client_user_id    = Auth::user()->id;
-        $TP->client_email      = Auth::user()->email;
-        $TP->client_name       = Input::get('name');
-        $TP->client_surname    = Input::get('surname');
-        $TP->client_telephone  = Input::get('area_code').Input::get('telephone');
-        $TP->client_ip         = $request->getClientIp();
-
-        $TP->receiving_name      = Input::get('name');
-        $TP->receiving_surname   = Input::get('surname');
-        $TP->receiving_email     = Auth::user()->email;
-        $TP->receiving_telephone = Input::get('area_code').Input::get('telephone');
-
-        $TP->shipment_city     = Input::get('city');
-        $TP->shipment_state    = Input::get('state');
-        $TP->shipment_address  = [
-          'street_name'   => Input::get('street_name'),
-          'street_number' => Input::get('street_number'),
-        ];
-        $TP->shipment_zip_code = Input::get('zip_code');
-
-        $TP->billing_city      = Input::get('city');
-        $TP->billing_state     = Input::get('state');;
-        $TP->billing_address   = [
-          'street_name'   => Input::get('street_name'),
-          'street_number' => Input::get('street_number'),
-        ];
-        $TP->billing_zip_code  = Input::get('zip_code');
-
-        $TP->items             = $items;
-        $TP->id_order          = $order->id;
-
-
-        if ($TP->checkout())
-        { // si pudimos hacer el ticket redirigimos
-          return Redirect::to($TP->url_form_pago);
-        } else
-        { // como no pudimos crear el tiket debemos mostrar un mensaje, por ejemplo para sugerir reintentar
-          return view('frontend_common.checkout_result')->with('message','Por favor intente nuevamente luego.');
-        }
+            return redirect()->route('frontend.payment',['id'=> $order->id]);
     }
 
-
-
-    //retry payment
-    public function retry_process_order($id)
+    public function payment($id)
     {
-        $order = Order::find($id);
-
-        if($order->payment_status == 0 || $order->payment_status == 2)
-        {
-
-            $TP = new TodoPagoWrap;
-
-            $order_items = unserialize($order->order_description);
-
-            $TP->client_user_id    = Auth::user()->id;
-            $TP->client_email      = Auth::user()->email;
-            $TP->client_name       = $order->name;
-            $TP->client_surname    = $order->surname;
-            $TP->client_telephone  = $order->area_code.$order->telephone;
-            $TP->client_ip         = Request::ip();
-
-            $TP->receiving_name      = $order->name;
-            $TP->receiving_surname   = $order->surname;
-            $TP->receiving_email     = Auth::user()->email;
-            $TP->receiving_telephone = $order->area_code.$order->telephone;
-
-            $TP->shipment_city     = $order->city;
-            $TP->shipment_state    = $order->state;
-            $TP->shipment_address  = [
-              'street_name'   => $order->street_name,
-              'street_number' => $order->street_number,
-            ];
-            $TP->shipment_zip_code = $order->zip_code;
-
-            $TP->billing_city      = $order->city;
-            $TP->billing_state     = $order->state;
-            $TP->billing_address   = [
-              'street_name'   => $order->street_name,
-              'street_number' => $order->street_number,
-            ];
-            $TP->billing_zip_code  = $order->zip_code;
-
-            $TP->items             = $order_items;
-            $TP->id_order          = $order->id;
-
-
-            if ($TP->checkout())
-            { // si pudimos hacer el ticket redirigimos
-              return Redirect::to($TP->url_form_pago);
-            } else
-            { // como no pudimos crear el tiket debemos mostrar un mensaje, por ejemplo para sugerir reintentar
-              return view('frontend_common.checkout_result', ['status' => 0, 'order_id' => $order->id]);
-            }
-
-
-        }
-
-
+      return view('frontend_common.pay_with_square', ['order_id' => $id])->with('warning', 'Please login.');
     }
+
+
+
+    public function process_payment()
+    {
+      // echo Input::get('nonce');
+      // echo Input::get('id_order');
+      //return view('frontend_common.pay_with_square', ['order_id' => $id]);
+
+      $access_token ='sandbox-sq0atb-Sn5Ql17GF8O8NV8QW1YV-w';
+      # setup authorization
+      \SquareConnect\Configuration::getDefaultConfiguration()->setAccessToken($access_token);
+      # create an instance of the Transaction API class
+      $transactions_api = new \SquareConnect\Api\TransactionsApi();
+      $location_id = 'CBASEOivDxdrG0koHVPyqK15C28gAQ';
+      $nonce = Input::get('nonce');
+
+
+      $order = Order::find(Input::get('id_order'));
+
+      if($order->status == 1)
+      {
+        $error_string = "Esa orden ya se encuentra con estado CAPTURED";
+        return view('frontend_common.payment_error', ['order_id' => $order->id, 'errors' => $error_string]);
+      }
+
+      // SQUARE_APPLICATION_ID=sandbox-sq0idp-iUgSsqpN-zSBe7DZMqMk0w
+      // SQUARE_TOKEN=sandbox-sq0atb-Sn5Ql17GF8O8NV8QW1YV-w
+      $total_amount = round($order->amount * 100);
+
+      $idempotency_key = uniqid();
+      $request_body = array (
+          "card_nonce" => $nonce,
+          # Monetary amounts are specified in the smallest unit of the applicable currency.
+          # This amount is in cents. It's also hard-coded for $1.00, which isn't very useful.
+          "amount_money" => array (
+              "amount" => $total_amount,
+              "currency" => "USD"
+          ),
+          # Every payment you process with the SDK must have a unique idempotency key.
+          # If you're unsure whether a particular payment succeeded, you can reattempt
+          # it with the same idempotency key without worrying about double charging
+          # the buyer.
+          "idempotency_key" => $idempotency_key
+      );
+
+      Order::whereId($order->id)->update(['idempotency_key' => $idempotency_key]);
+
+      try {
+          $result = $transactions_api->charge($location_id,  $request_body);
+
+          Order::whereId($order->id)->update(['feedback_sq' => $result]);
+
+          //dd($result);
+          $transaction_id = $result->getTransaction()->getId();
+          #echo "Status:". $result['transaction']->getTransaction()->getStatus();
+          if($result['transaction']["tenders"][0]['card_details']["status"] == "CAPTURED")
+          {
+            Order::whereId($order->id)->update(['payment_status' => 1]);
+          }
+          //OK
+          return view('frontend_common.payment_ok', ['order_id' => $order->id, 'transaction_id' => $transaction_id]);
+
+      } catch (\SquareConnect\ApiException $e) {
+          #echo "Exception when calling TransactionApi->charge:";
+          #var_dump($e->getResponseBody());
+
+          $response = $e->getResponseBody();
+          $error_string = "";
+          foreach($response->errors as &$error) {
+             $error_string .= $error->detail . "|";
+          }
+          #vista de error al pagar
+          return view('frontend_common.payment_error', ['order_id' => $order->id, 'errors' => $error_string]);
+      }
+    }
+
 
 
 

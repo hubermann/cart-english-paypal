@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Nikolag\Square\Traits\HasCustomers;
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasCustomers;
 
     /**
      * The attributes that are mass assignable.
@@ -61,7 +62,7 @@ class User extends Authenticatable
         return false;
     }
 
-    public function orders() 
+    public function orders()
     {
         return $this->hasMany(Order::class, 'user_id');
     }

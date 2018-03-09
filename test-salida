@@ -1,0 +1,37 @@
+{
+  "transactions": [
+    {
+      "id": "f4294853-f66d-5125-5772-ddaf97ef8798",
+      "location_id": "CBASEOivDxdrG0koHVPyqK15C28gAQ",
+      "created_at": "2018-03-06T03:14:09Z",
+      "tenders": [
+        {
+          "id": "88c9aa23-aefa-5bb4-6449-0d99f33ba3ff",
+          "location_id": "CBASEOivDxdrG0koHVPyqK15C28gAQ",
+          "transaction_id": "f4294853-f66d-5125-5772-ddaf97ef8798",
+          "created_at": "2018-03-06T03:14:09Z",
+          "note": "Online Transaction",
+          "amount_money": {
+            "amount": 100,
+            "currency": "USD"
+          },
+          "processing_fee_money": {
+            "amount": 13,
+            "currency": "USD"
+          },
+          "type": "CARD",
+          "card_details": {
+            "status": "CAPTURED",
+            "card": {
+              "card_brand": "VISA",
+              "last_4": "5858",
+              "fingerprint": "c9a38ce463700f60bf11054e0fdc6a7f566a5a87329a9ce52791aa6323ae8144"
+            },
+            "entry_method": "KEYED"
+          }
+        }
+      ],
+      "product": "EXTERNAL_API"
+    }
+  ]
+}

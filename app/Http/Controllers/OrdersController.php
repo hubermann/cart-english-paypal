@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Input;
 
 use App\Order;
 class OrdersController extends Controller
@@ -41,12 +42,40 @@ class OrdersController extends Controller
 	}
 
 	public function destroy($id)
-    {
-      $order = Order::findOrfail($id);
-      //destroy order
-      $order->delete();
-    	return Redirect::to('/backend/orders')->with('success', 'Order deleted. ');
- 
-    }
-  
+  {
+    $order = Order::findOrfail($id);
+    //destroy order
+    $order->delete();
+  	return Redirect::to('/backend/orders')->with('success', 'Order deleted. ');
+
+  }
+
+	public function edit($id)
+  {
+    $order = Order::findOrFail($id);
+    return View('backend.orders.edit', ['order' => $order]);
+  }
+
+  public function update()
+  {
+
+    // $rules = [
+    //   #'name' => 'required|max:255',
+    // ];
+		//
+    // $validator = Validator::make(Input::all(), $rules);
+		//
+    // if ($validator->fails())
+    // {
+    //     return redirect('/backend/orders/edit/'.Input::get('id'))->withErrors($validator)->withInput();
+    // }
+
+      $order           = Order::findOrFail(Input::get('id'));
+      $order->payment_status   = Input::get('status');
+
+      $order->save();
+
+      return Redirect::to('/backend/orders')->withInput()->with('success', 'Order actualizada.');
+  }
+
 }
