@@ -331,7 +331,8 @@ class HomeController extends Controller
       try {
           $result = $transactions_api->charge($location_id,  $request_body);
 
-          Order::whereId($order->id)->update(['feedback_sq' => $result]);
+          $feedback = serialize($result);
+          Order::whereId($order->id)->update(['feedback_sq' => $feedback]);
 
           //dd($result);
           $transaction_id = $result->getTransaction()->getId();
