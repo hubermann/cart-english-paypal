@@ -61,61 +61,62 @@
   </div>
 
   <!-- Contact Form -->
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <form method="post" action="{{ route('frontend.process_contact') }}">
-       {{ csrf_field() }}
-        <div class="row">
-          <div class="col-md-6 form-group g-mb-20">
-            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="text" placeholder="Name" name="name" value="{{ old('name') }}">
-            @if ($errors->has('name'))
-            <span class="help-block">
-                <strong>{{ $errors->first('name') }}</strong>
-            </span>
-            @endif
+  <div class="row justify-content-center" >
+      <div class="col-lg-8">
+        <form method="post" action="{{ route('frontend.process_contact') }}">
+         {{ csrf_field() }}
+          <div class="row">
+            <div class="col-md-6 form-group g-mb-20">
+              <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="text" placeholder="Nombre" name="name" value="{{ old('name') }}">
+              @if ($errors->has('name'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('name') }}</strong>
+              </span>
+              @endif
+            </div>
+
+            <div class="col-md-6 form-group g-mb-20">
+              <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="email" placeholder="Email" name="email" value="{{ old('email') }}">
+              @if ($errors->has('email'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('email') }}</strong>
+              </span>
+              @endif
+            </div>
+
+            <div class="col-md-6 form-group g-mb-20">
+              <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="text" placeholder="Asunto" name="subject" value="{{ old('subject') }}">
+              @if ($errors->has('subject'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('subject') }}</strong>
+              </span>
+              @endif
+            </div>
+
+            <div class="col-md-6 form-group g-mb-20">
+              <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="text" placeholder="Teléfono" name="telephone" value="{{ old('telephone') }}">
+              @if ($errors->has('telephone'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('telephone') }}</strong>
+              </span>
+              @endif
+            </div>
+
+            <div class="col-md-12 form-group g-mb-40">
+              <textarea class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover g-resize-none rounded g-py-13 g-px-15" rows="7" name="message" placeholder="Mensaje"> {{ old('message') }}</textarea>
+              @if ($errors->has('message'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('message') }}</strong>
+              </span>
+              @endif
+            </div>
           </div>
 
-          <div class="col-md-6 form-group g-mb-20">
-            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="email" placeholder="Email" name="email" value="{{ old('email') }}">
-            @if ($errors->has('email'))
-            <span class="help-block">
-                <strong>{{ $errors->first('email') }}</strong>
-            </span>
-            @endif
+          <div class="text-center">
+            <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="submit">Send message</button>
           </div>
-
-          <div class="col-md-6 form-group g-mb-20">
-            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="text" placeholder="Subject" name="subject" value="{{ old('subject') }}">
-            @if ($errors->has('subject'))
-            <span class="help-block">
-                <strong>{{ $errors->first('subject') }}</strong>
-            </span>
-            @endif
-          </div>
-
-          <div class="col-md-6 form-group g-mb-20">
-            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15" type="text" placeholder="Telephone" name="telephone" value="{{ old('telephone') }}">
-            @if ($errors->has('telephone'))
-            <span class="help-block">
-                <strong>{{ $errors->first('telephone') }}</strong>
-            </span>
-            @endif
-          </div>
-
-          <div class="col-md-12 form-group g-mb-40">
-            <textarea class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover g-resize-none rounded g-py-13 g-px-15" rows="7" name="message" placeholder="Message"> {{ old('message') }}</textarea>
-            @if ($errors->has('message'))
-            <span class="help-block">
-                <strong>{{ $errors->first('message') }}</strong>
-            </span>
-            @endif
-          </div>
-        </div>
-
-        <div class="text-center">
-          <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="submit">Send message</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
   <!-- End Contact Form -->

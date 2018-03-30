@@ -81,7 +81,7 @@
                   aria-labelledby="account-dropdown-invoker-2">
                 @if( Auth::user() )
                 <li>
-                    <a href="{{ route('frontend.user_orders') }}" class="d-block g-color-black g-color-primary--hover g-text-underline--none--hover g-font-weight-400 g-py-5 g-px-20">Mis ordenes</a>
+                    <a href="{{ route('frontend.user_orders') }}" class="d-block g-color-black g-color-primary--hover g-text-underline--none--hover g-font-weight-400 g-py-5 g-px-20">My orders</a>
                   </li>
                   <li>
 
@@ -206,7 +206,7 @@
               <?php }else{ ?>
                 <div class="text-center g-mb-15">
                   <h6> <br>No items in your order.</h6>
-                  <a class="btn btn-block u-btn-black g-brd-primary--hover g-bg-primary--hover g-font-size-12 text-uppercase rounded g-py-10" href="{{url('products')}}">Comenzar a comprar</a>
+                  <a class="btn btn-block u-btn-black g-brd-primary--hover g-bg-primary--hover g-font-size-12 text-uppercase rounded g-py-10" href="{{url('products')}}">View products</a>
                 </div>
               <?php } ?>
             </div>
@@ -282,12 +282,12 @@
         <!-- Navigation -->
         <div id="navBar" class="collapse navbar-collapse align-items-center flex-sm-row g-pt-15 g-pt-0--lg">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item g-ml-10--lg">
+            <!-- <li class="nav-item g-ml-10--lg">
               <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="/">Home</a>
-            </li>
+            </li> -->
 
             <li class="nav-item g-ml-10--lg">
-              <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="{{ route('frontend.products') }}">Products</a>
+              <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="{{ route('frontend.products') }}">All Products</a>
             </li>
             <!-- End Home - Submenu -->
 

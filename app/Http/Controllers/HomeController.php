@@ -166,7 +166,6 @@ class HomeController extends Controller
 
     public function process_contact()
     {
-
         $rules = [
             'name' => 'required',
             'email' => 'required',
@@ -175,28 +174,37 @@ class HomeController extends Controller
 
         $validator = Validator::make(Input::all(), $rules);
 
-        if ($validator->fails())
-        {
-            return redirect('/contact')->withErrors($validator)->withInput();
+        if ($validator->fails()) {
+            return redirect('/contact'.'#contact')->withErrors($validator)->withInput();
         }
 
+
         #ContactUS::create($request->all());
+        $name       = Input::get('name');
+        $email      = Input::get('email');
+        $subject    = Input::get('subject');
+        $telephone  = Input::get('telephone');
+        $user_message    = Input::get('message');
 
-        Mail::send('email',
-           array(
-               'name' => Input::get('name'),
-               'email' => Input::get('email'),
-               'subject' => Input::get('subject'),
-               'telephone' => Input::get('telephone'),
-               'message' => Input::get('message')
-           ), function($message)
-           {
-               $message->from('info@hubercart.tk');
-               $message->to('hubermann@gmail.com', 'Admin')->subject('Website Feedback');
-           });
+        Mail::send(
 
-        return redirect('/contact')->with('success', 'Gracias por su mensaje');
+            'email',
+             array(
+                 'name'       => $name,
+                 'email'      => $email,
+                 'subject'    => $subject,
+                 'telephone'  => $telephone,
+                 'user_message'    => $user_message
+             ),
 
+            function ($message) {
+                $message->from('info@cocinnovation.com');
+                $message->to('info@cocinnovation.com', 'Admin')->subject('Website Feedback');
+            }
+
+        );
+
+        return redirect('/contact')->with('success', 'Thank you! Your message has been sent successfully.');
     }
 
     public static function get_product_images($id)
