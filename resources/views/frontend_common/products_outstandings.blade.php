@@ -16,7 +16,7 @@
         <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
       </li>
       <li class="list-inline-item g-color-primary">
-        <span>Destacados</span>
+        <span>Specials</span>
       </li>
     </ul>
   </div>

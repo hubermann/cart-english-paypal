@@ -59,7 +59,7 @@
 
 <div class="container g-pt-100 g-pb-70">
   <div class="text-center mx-auto g-max-width-600 g-mb-50">
-    <h2 class="g-color-black mb-4">Outstandings</h2>
+    <h2 class="g-color-black mb-4">Specials</h2>
     <!-- <p class="lead">Keep in touch with the latest blogs &amp; news.</p> -->
   </div>
 

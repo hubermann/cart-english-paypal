@@ -29,7 +29,7 @@
 
         <div class="col-auto g-hidden-xs-down g-color-white-opacity-0_6 g-font-weight-400 g-pl-15 g-pl-0--sm g-py-14">
           <i class="icon-communication-163 u-line-icon-pro g-font-size-18 g-valign-middle g-color-white-opacity-0_8 g-mr-10 g-mt-minus-2"></i>
-          8 800 1234 4321
+          305-521-3331
         </div>
 
         <div class="col-auto g-pos-rel g-py-14">
@@ -307,7 +307,7 @@
 
 
             <li class="nav-item g-ml-10--lg">
-              <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="{{ route('frontend.outstandings')}}">Outstandings</a>
+              <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="{{ route('frontend.outstandings')}}">Specials</a>
             </li>
             <li class="nav-item g-ml-10--lg">
               <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="{{ route('frontend.contact')}}">Contact</a>
