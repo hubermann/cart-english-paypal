@@ -50,7 +50,7 @@ class AddMoneyController extends HomeController
     public function payWithPaypal()
     {
       //Si no esta logueado lo redirijo a loguearse
-        if( !Auth::user() ){ return redirect('login')->with('warning', 'Por favor identifiquese.');}
+        if( !Auth::user() ){ return redirect('login')->with('warning', 'Please login.');}
       //Creo la orden con los datos del cleinte
 
       $items = [];

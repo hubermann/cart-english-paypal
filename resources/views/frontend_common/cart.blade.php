@@ -4,13 +4,14 @@
 
 
 <section>
-    <div class="container g-pt-100 g-pb-70">
+    <div class="container g-pt-30 g-pb-70">
         <form class="js-validate js-step-form" data-progress-id="#stepFormProgress" data-steps-id="#stepFormSteps" novalidate="novalidate">
-          <div class="g-mb-100">
+          <h5>Shopping cart summary</h5>
+          <!-- <div class="g-mb-100"> -->
 
           @if(count($cart))
             <!-- Step Titles -->
-            <ul id="stepFormProgress" class="js-step-progress row justify-content-center list-inline text-center g-font-size-17 mb-0">
+            <!-- <ul id="stepFormProgress" class="js-step-progress row justify-content-center list-inline text-center g-font-size-17 mb-0">
               <li class="col-3 list-inline-item g-mb-20 g-mb-0--sm active">
                 <span class="d-block u-icon-v2 u-icon-size--sm g-rounded-50x g-brd-primary g-color-primary g-color-white--active g-bg-primary--active g-color-white--checked g-bg-primary--checked mx-auto mb-3">
                   <i class="g-font-style-normal g-font-weight-700 g-hide-check">1</i>
@@ -34,9 +35,9 @@
                 </span>
                 <h4 class="g-font-size-16 text-uppercase mb-0">Payment &amp; Review</h4>
               </li>
-            </ul>
+            </ul> -->
             <!-- End Step Titles -->
-          </div>
+          <!-- </div> -->
 
           <div id="stepFormSteps">
             <!-- Shopping Cart -->

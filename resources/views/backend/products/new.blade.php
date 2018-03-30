@@ -65,17 +65,17 @@
 				</div>
 
 				<div class="row">
-					<div class="col-md-4">
+					<!-- <div class="col-md-4">
 						<div class="form-group">
 							<label for="title">Cantidad en stock</label>
 							<input type="text" name="qty" class="form-control" value="{{ old('qty') }}">
 							@if ($errors->has('qty'))
-		              <span class="help-block">
-		                  <strong>{{ $errors->first('qty') }}</strong>
-		              </span>
-		          @endif
+								<span class="help-block">
+									<strong>{{ $errors->first('qty') }}</strong>
+								</span>
+							@endif
 						</div>
-					</div>
+					</div> -->
 
 					<div class="col-md-4">
 						<div class="form-group">

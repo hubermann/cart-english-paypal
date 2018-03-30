@@ -41,7 +41,8 @@ class HomeController extends Controller
         $data['outstandings'] = Product::where('outstanding', 1)->get();
         $data['products'] = Product::where('outstanding', 0)->take(9)->get();
 
-        return view('frontend_common.home', $data );//return view('home');
+        #return view('frontend_common.home', $data );
+        return view('coming_soon');
     }
 
 
@@ -124,7 +125,7 @@ class HomeController extends Controller
             $product_id = Request::get('product_id');
             $product = Product::find($product_id);
             Cart::add(array('id' => $product_id, 'name' => $product->title, 'qty' => 1, 'price' => $product->price));
-            return \App::make('redirect')->back()->with('success', 'Producto agregado al carrito.');
+            return \App::make('redirect')->back()->with('success', 'Product was successfully added to cart.');
         }
 
         //increment the quantity
@@ -224,8 +225,8 @@ class HomeController extends Controller
 
     public function checkout()
     {
-        if( !Auth::user() ){ return redirect('login')->with('warning', 'Por favor identifiquese.');}
-        if( Cart::total() == 0.00 ){ return redirect('/')->with('warning', 'No hay productos en su orden.');}
+        if( !Auth::user() ){ return redirect('login')->with('warning', 'Please login.');}
+        if( Cart::total() == 0.00 ){ return redirect('/')->with('warning', 'Empty order.');}
 
         return view('frontend_common.checkout');
     }
@@ -256,7 +257,7 @@ class HomeController extends Controller
             $items = [];
             foreach(Cart::content() as $row)
             {
-                array_push($items, ["id" => $row->id, "title" => $row->name, "quantity" => $row->qty, "currency_id" => "ARS", "unit_price" => $row->price ]);
+                array_push($items, ["id" => $row->id, "title" => $row->name, "quantity" => $row->qty, "currency_id" => "USD", "unit_price" => $row->price ]);
             }
 
             $order                      = New Order();
@@ -310,7 +311,7 @@ class HomeController extends Controller
 
       if($order->status == 1)
       {
-        $error_string = "Esa orden ya se encuentra con estado CAPTURED";
+        $error_string = "Duplicated status CAPTURED for this order";
         return view('frontend_common.payment_error', ['order_id' => $order->id, 'errors' => $error_string]);
       }
 
@@ -423,7 +424,7 @@ class HomeController extends Controller
 // charset=windows-1252
 
 
-        echo "Payment Success desde paypal :";
+        echo "Payment Success.";
     }
 
     public function payment_error(Request $request)
@@ -433,7 +434,7 @@ class HomeController extends Controller
         //
         // $order = Order::find($id_order)->payment_rejected();
         // return view('frontend_common.checkout_result', ['status' => 2, 'order_id' => $id_order]);
-        echo "Payment error desde paypal";
+        echo "Payment error.";
         var_dump($params);
     }
 

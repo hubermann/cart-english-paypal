@@ -65,7 +65,7 @@ class ProductsController extends Controller
 
     	$Product           = New Product();
       $Product->title    = Input::get('title');
-      $Product->qty      = $qty;
+      #$Product->qty      = $qty;
       $Product->price      = Input::get('price');
       $Product->category_id    = Input::get('category_id');
       $Product->subcategory_id   = Input::get('subcategory_id');
